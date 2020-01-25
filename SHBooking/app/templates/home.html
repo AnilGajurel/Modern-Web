@@ -1,47 +1,281 @@
+{% extends "layout.html" %}
+{% block content %}
 {%load static%}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>SHBooking</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="{% static 'style/index.css' %}">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  
-</head>
-<body>
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-	<a href="#" class="navbar-brand">SHBooking</a>
-	<button class="navbar-toggler" data-toggle="collapse" data-target="#navbarmenu">
-		<span class="navbar-toggler-icon"></span>
+ <div class="slide">
+<div id="carouselExampleControls" class="carousel slide ml-auto" data-ride="carousel">
+	<ol class="carousel-indicators">
+		<li data-target="#carouselExampleControls" data-slide-to="0" class="active">
+		</li>
+		<li data-target="#carouselExampleControls" data-slide-to="1">
+		</li>
+		<li data-target="#carouselExampleControls" data-slide-to="2" >
+		</li>
+		<li data-target="#carouselExampleControls" data-slide-to="3" >
+		</li>
+	</ol>
+	
 
-	</button>
-	<div class="collapse navbar-collapse" id="navbarmenu">
-	<ul class="navbar-nav mr-auto">
-		<li class="nav-item">
-			<a href="#" class="nav-link"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-		</li>
-	</ul>
-	<ul class="navbar-nav ml-auto">
-		<li class="nav-item">
-			<button class="open-button" onclick="openLogin()"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
-		</li>
-		<li class="nav-item">
-			<button class="open-button" onclick="openSignup()"><i class="fa fa-user-plus" aria-hidden="true"></i> SignUp</button>
-		</li>
-		
-	</ul>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'Images/r1.jpg' %}" class="d-block w-100" alt="room">
+      <div class="carousel-caption">
+        <h3>SHbooking</h3>
+        <p>SHBooking is always a fun way to book a hotel room</p>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <img src="{% static 'Images/r2.jpg'%}" class="d-block w-100" alt="room">
+       <div class="carousel-caption">
+        <h3>SHbooking</h3>
+        <p>You will never feel Homesick in this Hotel</p>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <img src="{% static 'Images/r3.jpg'%}" class="d-block w-100" alt="room">
+    </div>
+
+    <div class="carousel-item">
+      <img src="{% static 'Images/r4.jpg'%}" class="d-block w-100" alt="room">
+    </div>
+  </div>
+
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
-</nav>
-  
-
-</body>
+</div>
 
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-</html>
+
+
+
+
+
+
+
+<div class="box">
+	<h2>Hotel Rooms</h2>
+	<div class="row">
+	<div class="col-md-3">
+	<div class="product-top">
+	<img src="{% static 'Images/room1.jpg'%}">
+		<div class="overlay">
+		<button type="button" class="btn btn-secondary" onclick="openbooking()" title="Booking">
+		<i class="fa fa-bookmark" aria-hidden="true"></i>
+		</button>
+		<button type="button" class="btn btn-secondary" title="Detail">
+		<i class="fa fa-info" aria-hidden="true"></i>
+		</button>
+		
+		</div>
+	</div>
+
+	<div class="product-bottom text-center">
+		<i class="fa fa-star" ></i>
+		<i class="fa fa-star"></i>
+		<i class="fa fa-star"></i>
+		<i class="fa fa-star-half-o" ></i>
+		<i class="fa fa-star-o"></i>
+		<h3>ROOM1</h3>
+		<h5>$100</h5>
+	</div>
+ 	</div>
+
+
+ 	<div class="col-sm-3">
+	<div class="product-top">
+	<img src="{% static 'Images/room2.jpg'%}">
+		<div class="overlay">
+		<button type="button" class="btn btn-secondary" onclick="openbooking()" title="Booking">
+		<i class="fa fa-bookmark" aria-hidden="true"></i>
+		</button>
+		<button type="button" class="btn btn-secondary" title="Detail">
+		<i class="fa fa-info" aria-hidden="true"></i>
+		</button>
+		
+		</div>
+	</div>
+	<div class="product-bottom text-center">
+		<i class="fa fa-star" ></i>
+		<i class="fa fa-star"></i>
+		<i class="fa fa-star"></i>
+		<i class="fa fa-star-half-o" ></i>
+		<i class="fa fa-star-o"></i>
+		<h3>ROOM2</h3>
+		<h5>$100</h5>
+	</div>
+ 	</div>
+
+ 	<div class="col-sm-3">
+	<div class="product-top">
+	<img src="{% static 'Images/room3.jpg'%}">
+		<div class="overlay">
+		<button type="button" class="btn btn-secondary" onclick="openbooking()" title="Booking">
+		<i class="fa fa-bookmark" aria-hidden="true"></i>
+		</button>
+		<button type="button" class="btn btn-secondary" title="Detail">
+		<i class="fa fa-info" aria-hidden="true"></i>
+		</button>
+		</div>
+	</div>
+	<div class="product-bottom text-center">
+		<i class="fa fa-star" ></i>
+		<i class="fa fa-star"></i>
+		<i class="fa fa-star"></i>
+		<i class="fa fa-star-half-o" ></i>
+		<i class="fa fa-star-o"></i>
+		<h3>ROOM3</h3>
+		<h5>$80</h5>
+	</div>
+ 	</div>
+
+
+ 	<div class="col-sm-3">
+	<div class="product-top">
+	<img src="{% static 'Images/room4.jpg'%}">
+		<div class="overlay">
+		<button type="button" class="btn btn-secondary" onclick="openbooking()" title="Booking">
+		<i class="fa fa-bookmark" aria-hidden="true"></i>
+		</button>
+		<button type="button" class="btn btn-secondary" title="Detail">
+		<i class="fa fa-info" aria-hidden="true"></i>
+		</button>
+		
+		</button>
+		</div>
+	</div>
+	<div class="product-bottom text-center">
+		<i class="fa fa-star" ></i>
+		<i class="fa fa-star"></i>
+		<i class="fa fa-star"></i>
+		
+		<i class="fa fa-star-half-o" ></i>
+		<i class="fa fa-star-o"></i>
+		<h3>ROOM4</h3>
+		<h5>$100</h5>
+	</div>
+ 	</div>
+
+ 	<div class="col-sm-3">
+	<div class="product-top">
+	<img src="{% static 'Images/room5.jpg'%}">
+		<div class="overlay">
+		<button type="button" class="btn btn-secondary" onclick="openbooking()" title="Booking">
+		<i class="fa fa-bookmark" aria-hidden="true"></i>
+		</button>
+		<button type="button" class="btn btn-secondary" title="Detail">
+		<i class="fa fa-info" aria-hidden="true"></i>
+		</button>
+		</button>
+		</div>
+	</div>
+
+	<div class="product-bottom text-center">
+		<i class="fa fa-star" ></i>
+		<i class="fa fa-star"></i>
+		<i class="fa fa-star"></i>
+		
+		<i class="fa fa-star-half-o" ></i>
+		<i class="fa fa-star-o"></i>
+		<h3>ROOM5</h3>
+		<h5>$120</h5>
+	</div>
+ 	</div>
+
+ 	<div class="col-sm-3">
+	<div class="product-top">
+	<img src="{% static 'Images/room6.jpg'%}">
+		<div class="overlay">
+		<button type="button" class="btn btn-secondary" onclick="openbooking()" title="Booking">
+		<i class="fa fa-bookmark" aria-hidden="true"></i>
+		</button>
+		<button type="button" class="btn btn-secondary" title="Detail">
+		<i class="fa fa-info" aria-hidden="true"></i>
+		</button>
+		
+		</div>
+	</div>
+
+	<div class="product-bottom text-center">
+		<i class="fa fa-star" ></i>
+		<i class="fa fa-star"></i>
+		<i class="fa fa-star"></i>
+		
+		<i class="fa fa-star-half-o" ></i>
+		<i class="fa fa-star-o"></i>
+		<h3>ROOM6</h3>
+		<h5>$90</h5>
+	</div>
+ 	</div>
+
+
+ 	<div class="col-sm-3">
+	<div class="product-top">
+	<img src="{% static 'Images/room7.jpg'%}">
+		<div class="overlay">
+		<button type="button" class="btn btn-secondary" onclick="openbooking()" title="Booking">
+		<i class="fa fa-bookmark" aria-hidden="true"></i>
+		</button>
+		<button type="button" class="btn btn-secondary" title="Detail">
+		<i class="fa fa-info" aria-hidden="true"></i>
+		</button>
+		
+		</div>
+	</div>
+
+	<div class="product-bottom text-center">
+		<i class="fa fa-star" ></i>
+		<i class="fa fa-star"></i>
+		<i class="fa fa-star"></i>
+		
+		<i class="fa fa-star" ></i>
+		<i class="fa fa-star-o"></i>
+		<h3>ROOM7</h3>
+		<h5>$99</h5>
+	</div>
+ 	</div>
+
+ 	<div class="col-sm-3">
+	<div class="product-top">
+	<img src="{% static 'Images/room8.jpg'%}">
+		<div class="overlay">
+		<button type="button" class="btn btn-secondary" onclick="openbooking()" title="Booking">
+		<i class="fa fa-bookmark" aria-hidden="true"></i>
+		</button>
+		<button type="button" class="btn btn-secondary" title="Detail">
+		<i class="fa fa-info" aria-hidden="true"></i>
+		</button>
+		</div>
+	</div>
+
+	<div class="product-bottom text-center">
+		<i class="fa fa-star" ></i>
+		<i class="fa fa-star"></i>
+		<i class="fa fa-star"></i>
+		
+		<i class="fa fa-star-half-o" ></i>
+		<i class="fa fa-star-o"></i>
+		<h3>ROOM8</h3>
+		<h5>$110</h5>
+	</div>
+ 	</div>
+
+	</div>
+</div>
+
+{% endblock content %}
+
+
+
+
+
