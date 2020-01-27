@@ -6,8 +6,9 @@ class Authenticate:
 		def wrap(request):
 			try:
 				User.objects.get(email=request.session['email'])
+				User.objects.get(password=request.session['password'])
 				return function(request)
 			except:
 				messages.warning(request,'please login first')
-				return redirect('login')
+				return redirect('/login')
 		return wrap

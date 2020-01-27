@@ -10,7 +10,32 @@ def layout(request):
 	return render(request,'layout.html')
 
 
+def login(request):
+	return render(request,"login.html")
 
 def home(request):
 	return render(request,"home.html")
+
+
+def signup(request):
+	return render(request,"signup.html")
+
+def booking(request):
+	return render(request,"booking.html")
+
+def register(request):
+	if request.method=="POST":
+		form=UserForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect('/login')
+	else:
+		form=UserForm()
+	return render(request,'signup.html',{'form':form})
+
+
+
+
+
+
 
