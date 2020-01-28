@@ -1,0 +1,13 @@
+{% extends "layout2.html" %}
+{% block content %}
+<form method="post" action="/update/{{user.user_id}}">
+	{% csrf_token %}
+	<input type="text" name="fname" value="{{user.fname}}">
+	<input type="text" name="lname" value="{{user.lname}}">
+	<input type="email" name="email" value="{{user.email}}">
+	<input type="password" name="password" value="{{user.password}}">
+	<input type="password" name="cpassword" value="{{user.cpassword}}">
+
+<button type="submit">submit</button>
+</form>
+{% endblock content %}

@@ -1,0 +1,68 @@
+{% extends "layout2.html" %}
+{% block content %}
+<a id="btnadd" href="/create" class="btn btn-primary">add</a>
+<input type="text" id="search" class="form-control col-md-4" style="margin-left: 10px">
+
+<table class="table">
+	<tr>
+		<th>ID</th>
+		<th>Firstname</th>
+		<th>lastname</th>
+		<th>email</th>
+		<th>password</th>
+		<th>confirmpassword</th>
+		<th>action</th>
+	</tr>
+{% for user in users %}
+<tr>
+	<td>{{user.user_id}}</td>
+	<td>{{user.fname}}</td>
+	<td>{{user.lname}}</td>
+	<td>{{user.email}}</td>
+	<td>{{user.password}}</td>
+	<td>{{user.cpassword}}</td>
+	<td><a class="" href="/edit/{{user.user_id}}">edit</a> | <a href="/delete/{{user.user_id}}">delete</a></td>
+</tr>
+{% endfor %}
+
+
+</table>
+<script>
+	$(document).ready(()=>{
+		$(".sidebar").find(".active").removeClass("active");
+		$("#customer").addClass("active");
+	})
+
+
+	$("#search").keydown(()=>{
+		$.ajax({
+			data:{search:$("#search").val()},
+			url:'/search',
+			method:'GET',
+			success:function(data){
+				console.log(data);
+				$("tr").not("tr:first").remove();
+				var html="";
+				for(d of data){
+					html+="<tr>";
+						html+="<td>"+d.user_id+"</td>";
+						html+="<td>"+d.fname+"</td>";
+						html+="<td>"+d.lname+"</td>";
+						html+="<td>"+d.email+"</td>";
+						html+="<td>"+d.password+"</td>";
+						html+="<td>"+d.cpassword+"</td>";
+						html+="<td><a href='/edit/"+d.user_id+"'>edit</a> | <a href='/delete/"+d.user_id+"'>delete</a></td>";
+
+					html+="</tr>"
+
+					$("table").append(html);
+				}
+			},error:function(error){
+				console.log(error)
+			},complete:function(){
+				console.log("complete")
+			}
+		})
+	})
+</script>
+{% endblock %}

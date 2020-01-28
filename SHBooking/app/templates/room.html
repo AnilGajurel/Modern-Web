@@ -1,0 +1,12 @@
+{% extends "layout2.html" %}
+{% block content %}
+this is room page
+
+<script>
+	$(document).ready(()=>{
+		$(".sidebar").find(".active").removeClass("active");
+		$("#room").addClass("active");
+	})
+</script>
+
+{% endblock content %}

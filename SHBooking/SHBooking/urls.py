@@ -20,10 +20,18 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home',views.home),
     path('signup',views.signup),
-    
+    path('entry',views.entry),
     path('login',views.login),
     path('booking',views.booking),
     path('register',views.register),
-    
+    path('',views.index),
+    path('search',views.search),
+    path('create',views.create),
+    path('edit/<int:id>',views.edit),
+    path('update/<int:id>',views.update),
+    path('delete/<int:id>',views.delete),
+    path('book',views.book),
+    path('room',views.room),
+
    
 ]

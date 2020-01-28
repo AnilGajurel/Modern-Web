@@ -1,0 +1,13 @@
+{% extends "layout2.html" %}
+{% block content %}
+<form method="post" action="/create" enctype="multipart/form-data">
+{% csrf_token %}
+fname:{{ form.fname }}
+lname:{{ form.lname }}
+email:{{ form.email }}
+password:{{ form.password }}
+cpassword:{{ form.cpassword }}
+
+<button type="submit">submit</button>
+</form>
+{% endblock %}
