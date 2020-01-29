@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from app import views
 urlpatterns = [
-    path('admin/', admin.site.urls),
+  
     path('home',views.home),
     path('signup',views.signup),
     path('entry',views.entry),
@@ -32,6 +32,13 @@ urlpatterns = [
     path('delete/<int:id>',views.delete),
     path('book',views.book),
     path('room',views.room),
+    path('admindetail',views.admindetail),
+    path('adminsignup',views.adminsignup),
+    path('admincreate',views.admincreate),
+    path('adminedit/<int:id>',views.adminedit),
+    path('adminupdate/<int:id>',views.adminupdate),
+    path('admindelete/<int:id>',views.admindelete),
+
 
    
 ]

@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
-from app.models import User
-from app.forms import UserForm
+from app.models import User, Admin
+from app.forms import UserForm, AdminForm
 from django.http import HttpResponse,JsonResponse
 from app.authenticate import Authenticate 
 from django.contrib import messages
@@ -79,3 +79,36 @@ def book(request):
 
 def room(request):
 	return render(request,"room.html")
+
+def admindetail(request):
+	admins=Admin.objects.all()
+	return render(request,"admindetail.html",{'admins':admins})
+
+
+def adminsignup(request):
+	return render(request,"adminsignup.html")
+
+
+def admincreate(request):
+	if request.method=="POST":
+		form=AdminForm(request.POST)
+		form.save()
+		return redirect('/admindetail')
+	form=AdminForm()
+	return render(request,'adminsignup.html',{'form':form})
+
+
+def adminedit(request,id):
+	admin=Admin.objects.get(admin_user=id)
+	return render(request,'adminedit.html',{'admin':admin})
+
+def adminupdate(request,id):
+	admin=Admin.objects.get(admin_user=id)
+	form=AdminForm(request.POST,instance=admin)
+	form.save()
+	return redirect('/admindetail')
+
+def admindelete(request,id):
+	admin=Admin.objects.get(admin_user=id)
+	admin.delete()
+	return redirect('/admindetail')
