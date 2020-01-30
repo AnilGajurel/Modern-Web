@@ -27,6 +27,14 @@
 
 
 </table>
+
+<form method="post" action="/">
+	{% csrf_token %}
+	<button type="submit" name="prev" id="prev" value="prev">prev</button>
+	<input type="number" name="page" value="{{page}}" id="page">
+	<button type="submit" name="next" id="next" value="next">next</button>
+</form>
+
 <script>
 	$(document).ready(()=>{
 		$(".sidebar").find(".active").removeClass("active");

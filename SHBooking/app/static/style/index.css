@@ -1,5 +1,3 @@
-
-
 .box{
   width: 100%;
   margin-top: 10%;
@@ -94,30 +92,26 @@
 
 
 
-
-.text2{
-  color: white;
-  width: 60%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.text2 a{
-  color:#bab0f0;
-}
-
-
-#bbtn{
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
+.navbar{
+  background: rgb(33,46,64);
+background: linear-gradient(90deg, rgba(33,46,64,1) 23%, rgba(28,42,69,1) 82%);
 }
 
 
 
-.navbar-nav{
-	margin-left: 75px;
 
+.form-group{
+    margin-bottom: 1rem !important;
+    text-align: center !important;
+}
+
+.l{
+    width: 60%;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 
+.form-row{
+  margin-right: 0px !important;
+}

@@ -44,8 +44,19 @@ def entry(request):
 
 @Authenticate.valid_user
 def index(request):
-	users=User.objects.all()
-	return render(request,"index.html",{'users':users})
+	limit=5
+	page=1
+	if request.method=="POST":
+		if "next" in request.POST:
+			page=(int(request.POST['page'])+1)
+		elif "prev" in request.POST:
+			page=(int(request.POST['page'])-1)
+		tempoffset=page-1
+		offset=tempoffset*page
+		users=User.objects.raw("select * from user limit 5 offset %s",[offset])
+	else:
+		users=User.objects.raw("select * from user limit 5 offset 0")
+	return render(request,"index.html",{'users':users,'page':page})
 
 def search(request):
 	users=User.objects.filter(email__contains=request.GET['search']).values()
@@ -107,6 +118,12 @@ def adminupdate(request,id):
 	form=AdminForm(request.POST,instance=admin)
 	form.save()
 	return redirect('/admindetail')
+
+def update(request,id):
+	user=User.objects.get(user_id=id)
+	form=UserForm(request.POST,instance=user)
+	form.save()
+	return redirect('/')
 
 def admindelete(request,id):
 	admin=Admin.objects.get(admin_user=id)
