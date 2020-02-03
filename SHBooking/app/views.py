@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from app.models import User, Admin
 from app.forms import UserForm, AdminForm
 from django.http import HttpResponse,JsonResponse
-from app.authenticate import Authenticate 
+from app.authenticate import Authenticate, AdminAuthenticate
 from django.contrib import messages
 from django.contrib.auth.models import auth
 # Create your views here.
@@ -13,6 +13,10 @@ def layout(request):
 def login(request):
 	return render(request,"login.html")
 
+def adminlogin(request):
+	return render(request,"adminlogin.html")
+
+
 def home(request):
 	return render(request,"home.html")
 
@@ -21,6 +25,9 @@ def signup(request):
 
 def booking(request):
 	return render(request,"booking.html")
+
+def where(request):
+	return render(request,"where.html")
 
 def register(request):
 	if request.method=="POST":
@@ -40,9 +47,15 @@ def layout2(request):
 def entry(request):
 	request.session['email']=request.POST['email']
 	request.session['password']=request.POST['password']
-	return redirect('/')	
+	return redirect('/admindetail')
 
-@Authenticate.valid_user
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/login')
+
+@AdminAuthenticate.valid_user
 def index(request):
 	limit=5
 	page=1
@@ -85,12 +98,15 @@ def delete(request,id):
 	user.delete()
 	return redirect('/')
 
+@AdminAuthenticate.valid_user
 def book(request):
 	return render(request,"book.html")
 
+@AdminAuthenticate.valid_user
 def room(request):
 	return render(request,"room.html")
 
+@AdminAuthenticate.valid_user
 def admindetail(request):
 	admins=Admin.objects.all()
 	return render(request,"admindetail.html",{'admins':admins})

@@ -21,8 +21,12 @@ urlpatterns = [
     path('home',views.home),
     path('signup',views.signup),
     path('entry',views.entry),
+    
     path('login',views.login),
+     path('adminlogin',views.adminlogin),
+    path('logout',views.logout),
     path('booking',views.booking),
+    path('where',views.where),
     path('register',views.register),
     path('',views.index),
     path('search',views.search),

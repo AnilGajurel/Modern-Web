@@ -112,6 +112,10 @@ background: linear-gradient(90deg, rgba(33,46,64,1) 23%, rgba(28,42,69,1) 82%);
 }
 
 
+.l img{
+  width: 20%;
+}
+
 .form-row{
   margin-right: 0px !important;
 }
