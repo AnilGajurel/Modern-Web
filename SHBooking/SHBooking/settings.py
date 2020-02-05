@@ -82,7 +82,7 @@ DATABASES = {
         'PASSWORD':'',
         'HOST':'127.0.0.1',
         'PORT':'3306'
-
+        
     }
 }
 
@@ -125,6 +125,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS=[
-    os.path.join(BASE_DIR,'static')
-]
+MEDIA_URL = '/app/static/Images/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'app/static/Images')
+

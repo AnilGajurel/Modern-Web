@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
-from app.models import User, Admin
-from app.forms import UserForm, AdminForm
+from app.models import User, Admin, Room
+from app.forms import UserForm, AdminForm, RoomForm
 from django.http import HttpResponse,JsonResponse
 from app.authenticate import Authenticate, AdminAuthenticate
 from django.contrib import messages
@@ -18,7 +18,7 @@ def adminlogin(request):
 
 
 def home(request):
-	return render(request,"home.html")
+	return render(request,"home.html",{'price':700})
 
 def signup(request):
 	return render(request,"signup.html")
@@ -52,7 +52,8 @@ def entry(request):
 
 
 def logout(request):
-    auth.logout(request)
+    del request.session['email']
+    del request.session['password']
     return redirect('/login')
 
 @AdminAuthenticate.valid_user
@@ -102,9 +103,35 @@ def delete(request,id):
 def book(request):
 	return render(request,"book.html")
 
-@AdminAuthenticate.valid_user
+
 def room(request):
-	return render(request,"room.html")
+	rooms=Room.objects.all()
+	return render(request,"room.html",{'rooms':rooms})
+
+def roomcreate(request):
+	if request.method=="POST":
+		form=RoomForm(request.POST,request.FILES)
+		form.save()
+		return redirect('/room')
+	form=RoomForm()
+	return render(request,'roomcreate.html',{'form':form})
+
+def roomedit(request,id):
+	room=Room.objects.get(room_id=id)
+	return render(request,'roomedit.html',{'room':room})
+
+def roomupdate(request,id):
+	room=Room.objects.get(room_id=id)
+	form=RoomForm(request.POST,request.FILES,instance=room)
+	form.save()
+	return redirect('/room')
+
+
+def roomdelete(request,id):
+	room=Room.objects.get(room_id=id).image.delete()
+	room=Room.objects.get(room_id=id)
+	room.delete()
+	return redirect('/room')
 
 @AdminAuthenticate.valid_user
 def admindetail(request):

@@ -21,3 +21,12 @@ class Admin(models.Model):
 	cpassword=models.CharField(max_length=50)
 	class Meta:
 		db_table="admin"
+
+class Room(models.Model):
+	room_id=models.AutoField(auto_created=True,primary_key=True)
+	roomname=models.CharField(max_length=100)
+	image=models.ImageField(default='img.jpg')
+	description=models.CharField(max_length=100)
+	price=models.FloatField()
+	class Meta:
+		db_table="room"

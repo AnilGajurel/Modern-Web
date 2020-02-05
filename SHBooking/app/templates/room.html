@@ -1,6 +1,40 @@
 {% extends "layout2.html" %}
 {% block content %}
-this is room page
+
+<a id="btnadd" href="/roomcreate" class="btn btn-primary">add</a>
+<input type="text" id="search" class="form-control col-md-4" style="margin-left: 10px">
+<div class="table-responsive">
+<table class="table">
+<thead class="table-dark">
+	<tr>
+		<th>roomid</th>
+		<th>image</th>
+		<th>roomname</th>
+		<th>description</th>
+		<th>price</th>
+		<th>Action</th>
+		
+		
+	</tr>
+</thead>
+<tbody>
+{% for room in rooms %}
+<tr>
+	<td>{{room.room_id}}</td>
+	{% load static %}
+	<td><img width="40" src="{% static '/Images/' %}{{room.image}}"></td>
+	<td>{{room.roomname}}</td>
+	<td>{{room.description}}</td>
+	<td>{{room.price}}</td>
+	
+	<td><a class="" href="/roomedit/{{room.room_id}}">edit</a> | <a href="/roomdelete/{{room.room_id}}">delete</a></td>
+</tr>
+{% endfor %}
+
+</tbody>
+</table>
+</div>
+
 
 <script>
 	$(document).ready(()=>{
