@@ -18,7 +18,8 @@ def adminlogin(request):
 
 
 def home(request):
-	return render(request,"home.html",{'price':700})
+	rooms=Room.objects.all()
+	return render(request,"home.html",{'rooms':rooms})
 
 def signup(request):
 	return render(request,"signup.html")
@@ -54,11 +55,11 @@ def entry(request):
 def logout(request):
     del request.session['email']
     del request.session['password']
-    return redirect('/login')
+    return redirect('/adminlogin')
 
 @AdminAuthenticate.valid_user
 def index(request):
-	limit=5
+	limit=3
 	page=1
 	if request.method=="POST":
 		if "next" in request.POST:
@@ -67,9 +68,9 @@ def index(request):
 			page=(int(request.POST['page'])-1)
 		tempoffset=page-1
 		offset=tempoffset*page
-		users=User.objects.raw("select * from user limit 5 offset %s",[offset])
+		users=User.objects.raw("select * from user limit 3 offset %s",[offset])
 	else:
-		users=User.objects.raw("select * from user limit 5 offset 0")
+		users=User.objects.raw("select * from user limit 3 offset 0")
 	return render(request,"index.html",{'users':users,'page':page})
 
 def search(request):
@@ -103,7 +104,9 @@ def delete(request,id):
 def book(request):
 	return render(request,"book.html")
 
-
+def bookcreate(request):
+	return render(request,"bookcreate.html")
+	
 def room(request):
 	rooms=Room.objects.all()
 	return render(request,"room.html",{'rooms':rooms})

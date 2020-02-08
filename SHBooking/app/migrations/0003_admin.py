@@ -24,4 +24,5 @@ class Migration(migrations.Migration):
                 'db_table': 'admin',
             },
         ),
+        migrations.RunSQL("insert into admin(fname,lname,email,password,cpassword) values('admin','admin','admin@gmail.com','admin','admin')")
     ]

@@ -2,9 +2,9 @@
 {% block content %}
 <a id="btnadd" href="/create" class="btn btn-primary">add</a>
 <input type="text" id="search" class="form-control col-md-4" style="margin-left: 10px">
-<div class="table-responsive">
+
 <table class="table">
-	<thead class="table-dark">
+	
 	<tr>
 		<th>ID</th>
 		<th>Firstname</th>
@@ -14,8 +14,8 @@
 		<th>confirmpassword</th>
 		<th>action</th>
 	</tr>
-</thead>
-<tbody>
+
+
 {% for user in users %}
 <tr>
 	<td>{{user.user_id}}</td>
@@ -26,12 +26,10 @@
 	<td>{{user.cpassword}}</td>
 	<td><a class="" href="/edit/{{user.user_id}}">edit</a> | <a href="/delete/{{user.user_id}}">delete</a></td>
 </tr>
-</tbody>
 {% endfor %}
 
 
 </table>
-</div>
 <form method="post" action="/">
 	{% csrf_token %}
 	<button type="submit" name="prev" id="prev" value="prev">prev</button>
@@ -46,7 +44,7 @@
 	})
 
 
-	$("#search").keydown(()=>{
+	$("#search").keyup(()=>{
 		$.ajax({
 			data:{search:$("#search").val()},
 			url:'/search',
@@ -54,8 +52,9 @@
 			success:function(data){
 				console.log(data);
 				$("tr").not("tr:first").remove();
-				var html="";
+				
 				for(d of data){
+					var html="";
 					html+="<tr>";
 						html+="<td>"+d.user_id+"</td>";
 						html+="<td>"+d.fname+"</td>";

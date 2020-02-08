@@ -66,59 +66,10 @@
 <div class="box">
 	<h2>Hotel Rooms</h2>
 	<div class="row">
-	<div class="col-md-3">
+	{% for room in rooms %}
+	<div class="col-sm-3">
 	<div class="product-top">
-	<img src="{% static 'Images/room1.jpg'%}">
-		<div class="overlay">
-		<button type="button" class="btn btn-secondary" onclick="window.location.href = '/booking';" title="Booking">
-		<i class="fa fa-bookmark" aria-hidden="true"></i>
-		</button>
-		<button type="button" class="btn btn-secondary" title="Detail">
-		<i class="fa fa-info" aria-hidden="true"></i>
-		</button>
-		
-		</div>
-	</div>
-
-	<div class="product-bottom text-center">
-		<i class="fa fa-star" ></i>
-		<i class="fa fa-star"></i>
-		<i class="fa fa-star"></i>
-		<i class="fa fa-star-half-o" ></i>
-		<i class="fa fa-star-o"></i>
-		<h3>ROOM1</h3>
-		<h5>from ${{price}}</h5>
-	</div>
- 	</div>
-
-
- 	<div class="col-sm-3">
-	<div class="product-top">
-	<img src="{% static 'Images/room2.jpg'%}">
-		<div class="overlay">
-		<button type="button" class="btn btn-secondary" onclick="window.location.href = '/booking';" title="Booking">
-		<i class="fa fa-bookmark" aria-hidden="true"></i>
-		</button>
-		<button type="button" class="btn btn-secondary" title="Detail">
-		<i class="fa fa-info" aria-hidden="true"></i>
-		</button>
-		
-		</div>
-	</div>
-	<div class="product-bottom text-center">
-		<i class="fa fa-star" ></i>
-		<i class="fa fa-star"></i>
-		<i class="fa fa-star"></i>
-		<i class="fa fa-star-half-o" ></i>
-		<i class="fa fa-star-o"></i>
-		<h3>ROOM2</h3>
-		<h5>$100</h5>
-	</div>
- 	</div>
-
- 	<div class="col-sm-3">
-	<div class="product-top">
-	<img src="{% static 'Images/room3.jpg'%}">
+	<img src="{% static '/Images/'%}{{room.image}}">
 		<div class="overlay">
 		<button type="button" class="btn btn-secondary" onclick="window.location.href = '/booking';" title="Booking">
 		<i class="fa fa-bookmark" aria-hidden="true"></i>
@@ -128,147 +79,21 @@
 		</button>
 		</div>
 	</div>
+
 	<div class="product-bottom text-center">
 		<i class="fa fa-star" ></i>
 		<i class="fa fa-star"></i>
 		<i class="fa fa-star"></i>
 		<i class="fa fa-star-half-o" ></i>
 		<i class="fa fa-star-o"></i>
-		<h3>ROOM3</h3>
-		<h5>$80</h5>
+		<h3>{{room.roomname}}</h3>
+		<h4>{{room.description}}</h4>
+		<h5>from ${{room.price}}</h5>
 	</div>
  	</div>
+ 	{% endfor %}
 
-
- 	<div class="col-sm-3">
-	<div class="product-top">
-	<img src="{% static 'Images/room4.jpg'%}">
-		<div class="overlay">
-		<button type="button" class="btn btn-secondary" onclick="window.location.href = '/booking';" title="Booking">
-		<i class="fa fa-bookmark" aria-hidden="true"></i>
-		</button>
-		<button type="button" class="btn btn-secondary" title="Detail">
-		<i class="fa fa-info" aria-hidden="true"></i>
-		</button>
-		
-		</button>
-		</div>
-	</div>
-	<div class="product-bottom text-center">
-		<i class="fa fa-star" ></i>
-		<i class="fa fa-star"></i>
-		<i class="fa fa-star"></i>
-		
-		<i class="fa fa-star-half-o" ></i>
-		<i class="fa fa-star-o"></i>
-		<h3>ROOM4</h3>
-		<h5>$100</h5>
-	</div>
- 	</div>
-
- 	<div class="col-sm-3">
-	<div class="product-top">
-	<img src="{% static 'Images/room5.jpg'%}">
-		<div class="overlay">
-		<button type="button" class="btn btn-secondary" onclick="window.location.href = '/booking';" title="Booking">
-		<i class="fa fa-bookmark" aria-hidden="true"></i>
-		</button>
-		<button type="button" class="btn btn-secondary" title="Detail">
-		<i class="fa fa-info" aria-hidden="true"></i>
-		</button>
-		</button>
-		</div>
-	</div>
-
-	<div class="product-bottom text-center">
-		<i class="fa fa-star" ></i>
-		<i class="fa fa-star"></i>
-		<i class="fa fa-star"></i>
-		
-		<i class="fa fa-star-half-o" ></i>
-		<i class="fa fa-star-o"></i>
-		<h3>ROOM5</h3>
-		<h5>$120</h5>
-	</div>
- 	</div>
-
- 	<div class="col-sm-3">
-	<div class="product-top">
-	<img src="{% static 'Images/room6.jpg'%}">
-		<div class="overlay">
-		<button type="button" class="btn btn-secondary" onclick="window.location.href = '/booking';" title="Booking">
-		<i class="fa fa-bookmark" aria-hidden="true"></i>
-		</button>
-		<button type="button" class="btn btn-secondary" title="Detail">
-		<i class="fa fa-info" aria-hidden="true"></i>
-		</button>
-		
-		</div>
-	</div>
-
-	<div class="product-bottom text-center">
-		<i class="fa fa-star" ></i>
-		<i class="fa fa-star"></i>
-		<i class="fa fa-star"></i>
-		
-		<i class="fa fa-star-half-o" ></i>
-		<i class="fa fa-star-o"></i>
-		<h3>ROOM6</h3>
-		<h5>$90</h5>
-	</div>
- 	</div>
-
-
- 	<div class="col-sm-3">
-	<div class="product-top">
-	<img src="{% static 'Images/room7.jpg'%}">
-		<div class="overlay">
-		<button type="button" class="btn btn-secondary" onclick="window.location.href = '/booking';" title="Booking">
-		<i class="fa fa-bookmark" aria-hidden="true"></i>
-		</button>
-		<button type="button" class="btn btn-secondary" title="Detail">
-		<i class="fa fa-info" aria-hidden="true"></i>
-		</button>
-		
-		</div>
-	</div>
-
-	<div class="product-bottom text-center">
-		<i class="fa fa-star" ></i>
-		<i class="fa fa-star"></i>
-		<i class="fa fa-star"></i>
-		
-		<i class="fa fa-star" ></i>
-		<i class="fa fa-star-o"></i>
-		<h3>ROOM7</h3>
-		<h5>$99</h5>
-	</div>
- 	</div>
-
- 	<div class="col-sm-3">
-	<div class="product-top">
-	<img src="{% static 'Images/room8.jpg'%}">
-		<div class="overlay">
-		<button type="button" class="btn btn-secondary" onclick="window.location.href = '/booking';"  title="Booking">
-		<i class="fa fa-bookmark" aria-hidden="true"></i>
-		</button>
-		<button type="button" class="btn btn-secondary" title="Detail">
-		<i class="fa fa-info" aria-hidden="true"></i>
-		</button>
-		</div>
-	</div>
-
-	<div class="product-bottom text-center">
-		<i class="fa fa-star" ></i>
-		<i class="fa fa-star"></i>
-		<i class="fa fa-star"></i>
-		
-		<i class="fa fa-star-half-o" ></i>
-		<i class="fa fa-star-o"></i>
-		<h3>ROOM8</h3>
-		<h5>$110</h5>
-	</div>
- 	</div>
+ 	
 
 	</div>
 </div>

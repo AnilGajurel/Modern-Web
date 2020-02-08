@@ -4,7 +4,7 @@
 <input type="text" id="search" class="form-control col-md-4" style="margin-left: 10px">
 <div class="table-responsive">
 <table class="table">
-<thead class="table-dark">
+
 	<tr>
 		<th>ID</th>
 		<th>Firstname</th>
@@ -14,8 +14,7 @@
 		<th>confirmpassword</th>
 		<th>action</th>
 	</tr>
-</thead>
-<tbody>
+
 {% for admin in admins %}
 <tr>
 	<td>{{admin.admin_user}}</td>
@@ -28,7 +27,7 @@
 </tr>
 {% endfor %}
 
-</tbody>
+
 </table>
 </div>
 
@@ -71,4 +70,4 @@
 		})
 	})
 </script>
-{% endblock %}
+{% endblock content %}

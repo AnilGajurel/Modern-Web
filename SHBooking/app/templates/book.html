@@ -1,12 +1,73 @@
 {% extends "layout2.html" %}
 {% block content %}
-this is booking page
+<a id="btnadd" href="/bookcreate" class="btn btn-primary">add</a>
+<input type="text" id="search" class="form-control col-md-4" style="margin-left: 10px">
+<div class="table-responsive">
+<table class="table">
+
+	<tr>
+		<th>ID</th>
+		<th>Firstname</th>
+		<th>lastname</th>
+		<th>email</th>
+		<th>password</th>
+		<th>confirmpassword</th>
+		<th>action</th>
+	</tr>
+
+{% for admin in admins %}
+<tr>
+	<td>{{admin.admin_user}}</td>
+	<td>{{admin.fname}}</td>
+	<td>{{admin.lname}}</td>
+	<td>{{admin.email}}</td>
+	<td>{{admin.password}}</td>
+	<td>{{admin.cpassword}}</td>
+	<td><a class="" href="/adminedit/{{admin.admin_user}}">edit</a> | <a href="/admindelete/{{admin.admin_user}}">delete</a></td>
+</tr>
+{% endfor %}
+
+
+</table>
+</div>
+
 
 <script>
 	$(document).ready(()=>{
 		$(".sidebar").find(".active").removeClass("active");
-		$("#booking").addClass("active");
+		$("#book").addClass("active");
+	})
+
+
+	$("#search").keydown(()=>{
+		$.ajax({
+			data:{search:$("#search").val()},
+			url:'/search',
+			method:'GET',
+			success:function(data){
+				console.log(data);
+				$("tr").not("tr:first").remove();
+				var html="";
+				for(d of data){
+					html+="<tr>";
+						html+="<td>"+d.admin_user+"</td>";
+						html+="<td>"+d.fname+"</td>";
+						html+="<td>"+d.lname+"</td>";
+						html+="<td>"+d.email+"</td>";
+						html+="<td>"+d.password+"</td>";
+						html+="<td>"+d.cpassword+"</td>";
+						html+="<td><a href='/adminedit/"+d.admin_user+"'>adminedit</a> | <a href='/admindelete/"+d.admin_user+"'>admindelete</a></td>";
+
+					html+="</tr>"
+
+					$("table").append(html);
+				}
+			},error:function(error){
+				console.log(error)
+			},complete:function(){
+				console.log("complete")
+			}
+		})
 	})
 </script>
-
 {% endblock content %}

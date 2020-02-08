@@ -35,6 +35,7 @@ urlpatterns = [
     path('update/<int:id>',views.update),
     path('delete/<int:id>',views.delete),
     path('book',views.book),
+    path('bookcreate',views.bookcreate),
     path('room',views.room),
     path('roomedit/<int:id>',views.roomedit),
     path('roomupdate/<int:id>',views.roomupdate),
