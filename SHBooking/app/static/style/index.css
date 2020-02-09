@@ -119,3 +119,21 @@ background: linear-gradient(90deg, rgba(33,46,64,1) 23%, rgba(28,42,69,1) 82%);
 .form-row{
   margin-right: 0px !important;
 }
+
+.profileform{
+  width: 40% !important;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.registerform{
+  width: 60% !important;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.bookingform{
+  width: 60% !important;
+  margin-right: auto;
+  margin-left: auto;
+}

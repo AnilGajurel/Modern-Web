@@ -2,7 +2,7 @@
 {% block content %}
 
 
-  <form method="post" action="register">
+  <form method="post" class="registerform" name="validregister" action="register" onsubmit="return validateForm()">
     {% csrf_token %}
   
     <div class="text1">
@@ -39,5 +39,17 @@
     
   
   </form>
+
+<script>
+  function validateForm(){
+    var pwd=document.forms["validregister"]["password"].value;
+    var cpwd=document.forms["validregister"]["cpassword"].value;
+    if(pwd!=cpwd)
+    {
+      alert("password not match")
+      return false;
+    }
+  }
+</script>
 
 {% endblock content %}

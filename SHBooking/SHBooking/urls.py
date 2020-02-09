@@ -21,7 +21,7 @@ urlpatterns = [
     path('home',views.home),
     path('signup',views.signup),
     path('entry',views.entry),
-    
+    path('userentry',views.userentry),
     path('login',views.login),
      path('adminlogin',views.adminlogin),
     path('logout',views.logout),
@@ -47,6 +47,11 @@ urlpatterns = [
     path('adminedit/<int:id>',views.adminedit),
     path('adminupdate/<int:id>',views.adminupdate),
     path('admindelete/<int:id>',views.admindelete),
+    path('edituserdetail',views.edituserdetail),
+    path('profile/<str:email>',views.profile),
+    
+    path('userupdate/<int:id>',views.userupdate),
+    
 
 
    

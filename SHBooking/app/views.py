@@ -7,7 +7,8 @@ from django.contrib import messages
 from django.contrib.auth.models import auth
 # Create your views here.
 def layout(request):
-	return render(request,'layout.html')
+	users=User.objects.all()
+	return render(request,'layout.html',{'users':users})
 
 
 def login(request):
@@ -24,6 +25,7 @@ def home(request):
 def signup(request):
 	return render(request,"signup.html")
 
+@Authenticate.valid_user
 def booking(request):
 	return render(request,"booking.html")
 
@@ -40,7 +42,10 @@ def register(request):
 		form=UserForm()
 	return render(request,'signup.html',{'form':form})
 
-
+def userentry(request):
+	request.session['email']=request.POST['email']
+	request.session['password']=request.POST['password']
+	return redirect('/booking')
 
 def layout2(request):
 	return render(request,'layout2.html')
@@ -56,6 +61,11 @@ def logout(request):
     del request.session['email']
     del request.session['password']
     return redirect('/adminlogin')
+def logout(request):
+    del request.session['email']
+    del request.session['password']
+    return redirect('/home')
+
 
 @AdminAuthenticate.valid_user
 def index(request):
@@ -175,3 +185,21 @@ def admindelete(request,id):
 	admin=Admin.objects.get(admin_user=id)
 	admin.delete()
 	return redirect('/admindetail')
+
+def edituserdetail(request):
+	user=User.objects.get(user_id=id)
+	return render(request,'edituserdetail.html',{'user':user})
+
+
+def userupdate(request,id):
+	user=User.objects.get(user_id=id)
+	form=UserForm(request.POST,instance=user)
+	form.save()
+	return redirect('/home')
+
+
+def profile(request,email="request.session.email"):
+	user=User.objects.get(email=email)
+	return render(request,"edituserdetail.html",{'user':user})
+
+

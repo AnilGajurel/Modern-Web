@@ -32,15 +32,26 @@
     </li>
 	</ul>
 
-	<ul class="navbar-nav ml-auto">
   
+	<ul class="navbar-nav ml-auto">
+  {% if request.session.email and request.session.password %}
+  <li class="nav-item">
+  <a class="nav-link">Hi {{request.session.email}}</a>
+</li>
+<li class="nav-item">
+  <a href="/profile/{{request.session.email}}" class="nav-link">profile</a>
+</li>
+<li class="nav-item">
+  <a href="/logout" class="nav-link">logout</a>
+</li>
+  {% else %}
 	<li class="nav-item">
 	<a href="login" class="nav-link"><i class="fa fa-sign-in" aria-hidden="true"></i>  Login</a>
 	</li>
 	<li class="nav-item">
 	<a href="signup" class="nav-link"><i class="fa fa-user-plus" aria-hidden="true"></i> signup</a>
 	</li>
-	
+	{% endif %}
 	</ul>
 </div>
 </nav>
