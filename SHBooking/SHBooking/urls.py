@@ -23,9 +23,9 @@ urlpatterns = [
     path('entry',views.entry),
     path('userentry',views.userentry),
     path('login',views.login),
-     path('adminlogin',views.adminlogin),
+    path('adminlogin',views.adminlogin),
     path('logout',views.logout),
-    path('booking',views.booking),
+    path('logoutuser',views.logoutuser),
     path('where',views.where),
     path('register',views.register),
     path('',views.index),
@@ -34,8 +34,6 @@ urlpatterns = [
     path('edit/<int:id>',views.edit),
     path('update/<int:id>',views.update),
     path('delete/<int:id>',views.delete),
-    path('book',views.book),
-    path('bookcreate',views.bookcreate),
     path('room',views.room),
     path('roomedit/<int:id>',views.roomedit),
     path('roomupdate/<int:id>',views.roomupdate),
@@ -49,8 +47,14 @@ urlpatterns = [
     path('admindelete/<int:id>',views.admindelete),
     path('edituserdetail',views.edituserdetail),
     path('profile/<str:email>',views.profile),
-    
     path('userupdate/<int:id>',views.userupdate),
+    path('booking',views.booking),
+    path('Bookform',views.Bookform),
+    path('bookedit/<int:id>',views.bookedit),
+    path('bookupdate/<int:id>',views.bookupdate),
+    path('book',views.book),
+    path('bookcreate',views.bookcreate),
+    path('bookdelete/<int:id>',views.bookdelete),
     
 
 

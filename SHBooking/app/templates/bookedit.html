@@ -1,20 +1,24 @@
 {% extends "layout2.html" %}
 {% block content %}
-<form method="post" action="/roomupdate/{{room.room_id}}" enctype="multipart/form-data">
+<form method="post" class="form1" action="/bookupdate/{{booking.book_id}}">
 	{% csrf_token %}
-	<input type="name" name="roomname" value="{{room.roomname}}">
-	<input type="text" name="description" value="{{room.description}}">
-	<input type="number" name="price" value="{{room.price}}">
-	{% load static %}
-	<img width="100" src="{% static '/Images/' %}{{room.image}}">
-	<input type="file" name="image">
+	First Name:<input type="name" class="form-control" name="Fname" value="{{booking.Fname}}">
+	Last Name:<input type="name" class="form-control" name="Lname" value="{{booking.Lname}}">
+	Email:<input type="email" class="form-control" name="Email" value="{{booking.Email}}">
+	Phone Number:<input type="number" class="form-control" name="Number" value="{{booking.Number}}">
+	Check in Date:<input type="name" class="form-control" name="Checkin" value="{{booking.Checkin}}">
+	Check out Date:<input type="name" class="form-control" name="Checkout" value="{{booking.Checkout}}">
+	No of People:<input type="number" class="form-control" name="Noofpeople" value="{{booking.Noofpeople}}">
+	
+	
+	
 
-<button type="submit">submit</button>
+<button type="submit" class="btn btn-primary">submit</button>
 </form>
 <script>
 	$(document).ready(()=>{
 		$(".sidebar").find(".active").removeClass("active");
-		$("#room").addClass("active");
+		$("#booking").addClass("active");
 	})
 </script>
 {% endblock content %}

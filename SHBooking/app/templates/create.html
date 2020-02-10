@@ -2,11 +2,11 @@
 {% block content %}
 <form method="post" action="/create" enctype="multipart/form-data">
 {% csrf_token %}
-fname:{{ form.fname }}
-lname:{{ form.lname }}
-email:{{ form.email }}
-password:{{ form.password }}
-cpassword:{{ form.cpassword }}
+fname:{{ form.userfname }}
+lname:{{ form.userlname }}
+email:{{ form.useremail }}
+password:{{ form.userpassword }}
+cpassword:{{ form.usercpassword }}
 
 <button type="submit">submit</button>
 </form>

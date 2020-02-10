@@ -6,7 +6,7 @@ class Authenticate:
 	def valid_user(function):
 		def wrap(request):
 			try:
-				user=User.objects.get(Q(email=request.session['email']) & Q(password=request.session['password']))
+				user=User.objects.get(Q(useremail=request.session['useremail']) & Q(userpassword=request.session['userpassword']))
 				return function(request)
 			except:
 				messages.warning(request,'please login first')

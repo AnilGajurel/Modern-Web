@@ -1,13 +1,13 @@
 {% extends "layout2.html" %}
 {% block content %}
-<form method="post" action="/update/{{user.user_id}}">
+<form method="post" class="form1" action="/update/{{user.user_id}}">
 	{% csrf_token %}
-	<input type="text" name="fname" value="{{user.fname}}">
-	<input type="text" name="lname" value="{{user.lname}}">
-	<input type="email" name="email" value="{{user.email}}">
-	<input type="password" name="password" value="{{user.password}}">
-	<input type="password" name="cpassword" value="{{user.cpassword}}">
+	First name:<input type="text" class="form-control" name="userfname" value="{{user.userfname}}">
+	Last Name:<input type="text" class="form-control" name="userlname" value="{{user.userlname}}">
+	Email:<input type="email" class="form-control" name="useremail" value="{{user.useremail}}">
+	Password:<input type="password" class="form-control" name="userpassword" value="{{user.userpassword}}">
+	Confirm Password:<input type="password" class="form-control" name="usercpassword" value="{{user.usercpassword}}">
 
-<button type="submit">submit</button>
+<button type="submit" class="btn btn-primary">submit</button>
 </form>
 {% endblock content %}

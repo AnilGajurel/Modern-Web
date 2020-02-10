@@ -34,15 +34,15 @@
 
   
 	<ul class="navbar-nav ml-auto">
-  {% if request.session.email and request.session.password %}
+  {% if request.session.useremail and request.session.userpassword %}
   <li class="nav-item">
-  <a class="nav-link">Hi {{request.session.email}}</a>
+  <a class="nav-link">Hi {{request.session.useremail}}</a>
 </li>
 <li class="nav-item">
   <a href="/profile/{{request.session.email}}" class="nav-link">profile</a>
 </li>
 <li class="nav-item">
-  <a href="/logout" class="nav-link">logout</a>
+  <a href="/logoutuser" class="nav-link">logout</a>
 </li>
   {% else %}
 	<li class="nav-item">

@@ -8,22 +8,26 @@
 	<tr>
 		<th>ID</th>
 		<th>Firstname</th>
-		<th>lastname</th>
-		<th>email</th>
-		<th>password</th>
-		<th>confirmpassword</th>
-		<th>action</th>
+		<th>Lastname</th>
+		<th>Email</th>
+		<th>Number</th>
+		<th>CheckIN Date</th>
+		<th>Checkout Date</th>
+		<th>No of people</th>
+		<th>Action</th>
 	</tr>
 
-{% for admin in admins %}
+{% for book in books %}
 <tr>
-	<td>{{admin.admin_user}}</td>
-	<td>{{admin.fname}}</td>
-	<td>{{admin.lname}}</td>
-	<td>{{admin.email}}</td>
-	<td>{{admin.password}}</td>
-	<td>{{admin.cpassword}}</td>
-	<td><a class="" href="/adminedit/{{admin.admin_user}}">edit</a> | <a href="/admindelete/{{admin.admin_user}}">delete</a></td>
+	<td>{{book.book_id}}</td>
+	<td>{{book.Fname}}</td>
+	<td>{{book.Lname}}</td>
+	<td>{{book.Email}}</td>
+	<td>{{book.Number}}</td>
+	<td>{{book.Checkin}}</td>
+	<td>{{book.Checkout}}</td>
+	<td>{{book.Noofpeople}}</td>
+	<td><a class="" href="/bookedit/{{book.book_id}}">edit</a> | <a href="/bookdelete/{{book.book_id}}">delete</a></td>
 </tr>
 {% endfor %}
 
@@ -35,7 +39,7 @@
 <script>
 	$(document).ready(()=>{
 		$(".sidebar").find(".active").removeClass("active");
-		$("#book").addClass("active");
+		$("#booking").addClass("active");
 	})
 
 
@@ -47,8 +51,9 @@
 			success:function(data){
 				console.log(data);
 				$("tr").not("tr:first").remove();
-				var html="";
+				
 				for(d of data){
+					var html="";
 					html+="<tr>";
 						html+="<td>"+d.admin_user+"</td>";
 						html+="<td>"+d.fname+"</td>";

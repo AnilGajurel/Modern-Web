@@ -19,11 +19,11 @@
 {% for user in users %}
 <tr>
 	<td>{{user.user_id}}</td>
-	<td>{{user.fname}}</td>
-	<td>{{user.lname}}</td>
-	<td>{{user.email}}</td>
-	<td>{{user.password}}</td>
-	<td>{{user.cpassword}}</td>
+	<td>{{user.userfname}}</td>
+	<td>{{user.userlname}}</td>
+	<td>{{user.useremail}}</td>
+	<td>{{user.userpassword}}</td>
+	<td>{{user.usercpassword}}</td>
 	<td><a class="" href="/edit/{{user.user_id}}">edit</a> | <a href="/delete/{{user.user_id}}">delete</a></td>
 </tr>
 {% endfor %}

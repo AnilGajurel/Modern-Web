@@ -137,3 +137,15 @@ background: linear-gradient(90deg, rgba(33,46,64,1) 23%, rgba(28,42,69,1) 82%);
   margin-right: auto;
   margin-left: auto;
 }
+
+.page-footer h5{
+  color: white !important;
+}
+
+.page-footer p{
+  color: white !important;
+}
+
+.footer-copyright{
+  color: white !important;
+}

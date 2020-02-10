@@ -1,15 +1,15 @@
 {% extends "layout2.html" %}
 {% block content %}
-<form method="post" action="/roomupdate/{{room.room_id}}" enctype="multipart/form-data">
+<form method="post" class="form1" action="/roomupdate/{{room.room_id}}" enctype="multipart/form-data">
 	{% csrf_token %}
-	<input type="name" name="roomname" value="{{room.roomname}}">
-	<input type="text" name="description" value="{{room.description}}">
-	<input type="number" name="price" value="{{room.price}}">
+	Roomname:<input type="name" class="form-control" name="roomname" value="{{room.roomname}}">
+	Description:<input type="text" class="form-control" name="description" value="{{room.description}}">
+	Room Price:<input type="number" class="form-control" name="price" value="{{room.price}}">
 	{% load static %}
 	<img width="100" src="{% static '/Images/' %}{{room.image}}">
-	<input type="file" name="image">
+	<input type="file" class="form-control" name="image">
 
-<button type="submit">submit</button>
+<button type="submit" class="btn btn-primary">submit</button>
 </form>
 <script>
 	$(document).ready(()=>{

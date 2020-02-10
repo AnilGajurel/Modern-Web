@@ -1,9 +1,9 @@
 from django import forms
 from app.models import User
-from app.models import Admin, Room
+from app.models import Admin, Room, Booking
 class UserForm(forms.ModelForm):
-	password=forms.CharField(widget=forms.PasswordInput)
-	cpassword=forms.CharField(widget=forms.PasswordInput)
+	userpassword=forms.CharField(widget=forms.PasswordInput)
+	usercpassword=forms.CharField(widget=forms.PasswordInput)
 	class Meta:
 		model=User
 		fields="__all__"
@@ -19,4 +19,9 @@ class AdminForm(forms.ModelForm):
 class RoomForm(forms.ModelForm):
 	class Meta:
 		model=Room
+		fields="__all__"
+
+class BookingForm(forms.ModelForm):
+	class Meta:
+		model=Booking
 		fields="__all__"

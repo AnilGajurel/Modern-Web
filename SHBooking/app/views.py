@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
-from app.models import User, Admin, Room
-from app.forms import UserForm, AdminForm, RoomForm
+from app.models import User, Admin, Room, Booking
+from app.forms import UserForm, AdminForm, RoomForm, BookingForm
 from django.http import HttpResponse,JsonResponse
 from app.authenticate import Authenticate, AdminAuthenticate
 from django.contrib import messages
@@ -25,9 +25,7 @@ def home(request):
 def signup(request):
 	return render(request,"signup.html")
 
-@Authenticate.valid_user
-def booking(request):
-	return render(request,"booking.html")
+
 
 def where(request):
 	return render(request,"where.html")
@@ -43,8 +41,8 @@ def register(request):
 	return render(request,'signup.html',{'form':form})
 
 def userentry(request):
-	request.session['email']=request.POST['email']
-	request.session['password']=request.POST['password']
+	request.session['useremail']=request.POST['useremail']
+	request.session['userpassword']=request.POST['userpassword']
 	return redirect('/booking')
 
 def layout2(request):
@@ -61,9 +59,10 @@ def logout(request):
     del request.session['email']
     del request.session['password']
     return redirect('/adminlogin')
-def logout(request):
-    del request.session['email']
-    del request.session['password']
+
+def logoutuser(request):
+    del request.session['useremail']
+    del request.session['userpassword']
     return redirect('/home')
 
 
@@ -110,12 +109,7 @@ def delete(request,id):
 	user.delete()
 	return redirect('/')
 
-@AdminAuthenticate.valid_user
-def book(request):
-	return render(request,"book.html")
 
-def bookcreate(request):
-	return render(request,"bookcreate.html")
 	
 def room(request):
 	rooms=Room.objects.all()
@@ -175,11 +169,6 @@ def adminupdate(request,id):
 	form.save()
 	return redirect('/admindetail')
 
-def update(request,id):
-	user=User.objects.get(user_id=id)
-	form=UserForm(request.POST,instance=user)
-	form.save()
-	return redirect('/')
 
 def admindelete(request,id):
 	admin=Admin.objects.get(admin_user=id)
@@ -198,8 +187,51 @@ def userupdate(request,id):
 	return redirect('/home')
 
 
-def profile(request,email="request.session.email"):
-	user=User.objects.get(email=email)
+def profile(request,email="request.session.useremail"):
+	user=User.objects.get(useremail=email)
 	return render(request,"edituserdetail.html",{'user':user})
 
+
+@Authenticate.valid_user
+def booking(request):
+	return render(request,"booking.html")
+
+def Bookform(request):
+	if request.method=="POST":
+		form=BookingForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect('/home')
+	else:
+		form=BookingForm()
+	return render(request,'booking.html',{'form':form})
+
+def bookcreate(request):
+	if request.method=="POST":
+		form=BookingForm(request.POST)
+		form.save()
+		return redirect('/book')
+	form=BookingForm()
+	return render(request,'bookcreate.html',{'form':form})
+
+def bookedit(request,id):
+	booking=Booking.objects.get(book_id=id)
+	return render(request,'bookedit.html',{'booking':booking})
+
+def bookupdate(request,id):
+	booking=Booking.objects.get(book_id=id)
+	form=BookingForm(request.POST,instance=booking)
+	form.save()
+	return redirect('/book')
+
+
+def bookdelete(request,id):
+	booking=Booking.objects.get(book_id=id)
+	booking.delete()
+	return redirect('/book')
+
+@AdminAuthenticate.valid_user
+def book(request):
+	books=Booking.objects.all()
+	return render(request,"book.html",{'books':books})
 
