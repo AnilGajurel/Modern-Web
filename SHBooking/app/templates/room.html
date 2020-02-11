@@ -2,7 +2,7 @@
 {% block content %}
 
 <a id="btnadd" href="/roomcreate" class="btn btn-primary">add</a>
-<input type="text" id="search" class="form-control col-md-4" style="margin-left: 10px">
+<input type="text" id="roomsearch" placeholder="search by roomname" class="form-control col-md-4" style="margin-left: 10px">
 <div class="table-responsive">
 <table class="table">
 <thead class="table-dark">
@@ -40,6 +40,39 @@
 	$(document).ready(()=>{
 		$(".sidebar").find(".active").removeClass("active");
 		$("#room").addClass("active");
+	})
+
+
+	$("#roomsearch").keyup(()=>{
+		$.ajax({
+			data:{search:$("#roomsearch").val()},
+			url:'/roomsearch',
+			method:'GET',
+			success:function(data){
+				console.log(data);
+				$("tr").not("tr:first").remove();
+				
+				for(d of data){
+					var html="";
+					html+="<tr>";
+						html+="<td>"+d.room_id+"</td>";
+						html+="<td><img width='40' src='{% static '/Images/' %}"+d.image+"'></td>";
+						html+="<td>"+d.roomname+"</td>";
+						
+						html+="<td>"+d.description+"</td>";
+						html+="<td>"+d.price+"</td>";
+						html+="<td><a href='/edit/"+d.room_id+"'>edit</a> | <a href='/delete/"+d.room_id+"'>delete</a></td>";
+
+					html+="</tr>"
+
+					$("table").append(html);
+				}
+			},error:function(error){
+				console.log(error)
+			},complete:function(){
+				console.log("complete")
+			}
+		})
 	})
 </script>
 

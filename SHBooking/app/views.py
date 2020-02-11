@@ -12,7 +12,11 @@ def layout(request):
 
 
 def login(request):
-	return render(request,"login.html")
+	return render(request,'login.html')
+	# if 'useremail' not in request.session:
+	# 	return render(request,'login.html')
+	# else:
+	# 	return render(request,"home.html")
 
 def adminlogin(request):
 	return render(request,"adminlogin.html")
@@ -53,8 +57,6 @@ def entry(request):
 	request.session['password']=request.POST['password']
 	return redirect('/admindetail')
 
-
-
 def logout(request):
     del request.session['email']
     del request.session['password']
@@ -64,7 +66,6 @@ def logoutuser(request):
     del request.session['useremail']
     del request.session['userpassword']
     return redirect('/home')
-
 
 @AdminAuthenticate.valid_user
 def index(request):
@@ -83,8 +84,24 @@ def index(request):
 	return render(request,"index.html",{'users':users,'page':page})
 
 def search(request):
-	users=User.objects.filter(email__contains=request.GET['search']).values()
+	users=User.objects.filter(useremail__contains=request.GET['search'])[0:3].values()
 	return JsonResponse(list(users),safe=False)
+
+def adminsearch(request):
+	admins=Admin.objects.filter(email__contains=request.GET['search'])[0:3].values()
+	return JsonResponse(list(admins),safe=False)
+
+
+def roomsearch(request):
+	rooms=Room.objects.filter(roomname__contains=request.GET['search']).values()
+	return JsonResponse(list(rooms),safe=False)
+
+def booksearch(request):
+	books=Booking.objects.filter(Fname__contains=request.GET['search']).values()
+	return JsonResponse(list(books),safe=False)
+
+
+
 
 def create(request):
 	if request.method=="POST":
@@ -175,21 +192,22 @@ def admindelete(request,id):
 	admin.delete()
 	return redirect('/admindetail')
 
-def edituserdetail(request):
+def edituserdetail(request,id):
 	user=User.objects.get(user_id=id)
 	return render(request,'edituserdetail.html',{'user':user})
 
 
-def userupdate(request,id):
-	user=User.objects.get(user_id=id)
+
+def userupdate(request,user_id):
+	user=User.objects.get(user_id=user_id)
 	form=UserForm(request.POST,instance=user)
 	form.save()
 	return redirect('/home')
 
 
-def profile(request,email="request.session.useremail"):
-	user=User.objects.get(useremail=email)
-	return render(request,"edituserdetail.html",{'user':user})
+def profile(request,useremail="request.session.useremail"):
+	user=User.objects.get(useremail=useremail)
+	return render(request,"profile.html",{'user':user})
 
 
 @Authenticate.valid_user
@@ -206,32 +224,21 @@ def Bookform(request):
 		form=BookingForm()
 	return render(request,'booking.html',{'form':form})
 
-def bookcreate(request):
-	if request.method=="POST":
-		form=BookingForm(request.POST)
-		form.save()
-		return redirect('/book')
-	form=BookingForm()
-	return render(request,'bookcreate.html',{'form':form})
 
-def bookedit(request,id):
-	booking=Booking.objects.get(book_id=id)
-	return render(request,'bookedit.html',{'booking':booking})
-
-def bookupdate(request,id):
-	booking=Booking.objects.get(book_id=id)
-	form=BookingForm(request.POST,instance=booking)
-	form.save()
-	return redirect('/book')
-
-
-def bookdelete(request,id):
-	booking=Booking.objects.get(book_id=id)
-	booking.delete()
-	return redirect('/book')
 
 @AdminAuthenticate.valid_user
 def book(request):
-	books=Booking.objects.all()
-	return render(request,"book.html",{'books':books})
+	limit=3
+	page=1
+	if request.method=="POST":
+		if "next" in request.POST:
+			page=(int(request.POST['page'])+1)
+		elif "prev" in request.POST:
+			page=(int(request.POST['page'])-1)
+		tempoffset=page-1
+		offset=tempoffset*page
+		books=Booking.objects.raw("select * from booking limit 3 offset %s",[offset])
+	else:
+		books=Booking.objects.raw("select * from booking limit 3 offset 0")
+	return render(request,"book.html",{'books':books,'page':page})
 

@@ -1,7 +1,7 @@
 {% extends "layout2.html" %}
 {% block content %}
-<a id="btnadd" href="/bookcreate" class="btn btn-primary">add</a>
-<input type="text" id="search" class="form-control col-md-4" style="margin-left: 10px">
+
+<input type="text" id="booksearch" placeholder="search by First Name" class="form-control col-md-4" style="margin-left: 10px">
 <div class="table-responsive">
 <table class="table">
 
@@ -14,7 +14,7 @@
 		<th>CheckIN Date</th>
 		<th>Checkout Date</th>
 		<th>No of people</th>
-		<th>Action</th>
+		
 	</tr>
 
 {% for book in books %}
@@ -27,12 +27,19 @@
 	<td>{{book.Checkin}}</td>
 	<td>{{book.Checkout}}</td>
 	<td>{{book.Noofpeople}}</td>
-	<td><a class="" href="/bookedit/{{book.book_id}}">edit</a> | <a href="/bookdelete/{{book.book_id}}">delete</a></td>
 </tr>
 {% endfor %}
 
 
 </table>
+
+<form method="post" action="/book">
+	{% csrf_token %}
+	<button type="submit" name="prev" id="prev" value="prev">prev</button>
+	<input type="number" name="page" value="{{page}}" id="page">
+	<button type="submit" name="next" id="next" value="next">next</button>
+</form>
+
 </div>
 
 
@@ -43,10 +50,10 @@
 	})
 
 
-	$("#search").keydown(()=>{
+	$("#booksearch").keydown(()=>{
 		$.ajax({
-			data:{search:$("#search").val()},
-			url:'/search',
+			data:{search:$("#booksearch").val()},
+			url:'/booksearch',
 			method:'GET',
 			success:function(data){
 				console.log(data);
@@ -55,14 +62,15 @@
 				for(d of data){
 					var html="";
 					html+="<tr>";
-						html+="<td>"+d.admin_user+"</td>";
-						html+="<td>"+d.fname+"</td>";
-						html+="<td>"+d.lname+"</td>";
-						html+="<td>"+d.email+"</td>";
-						html+="<td>"+d.password+"</td>";
-						html+="<td>"+d.cpassword+"</td>";
-						html+="<td><a href='/adminedit/"+d.admin_user+"'>adminedit</a> | <a href='/admindelete/"+d.admin_user+"'>admindelete</a></td>";
-
+						html+="<td>"+d.book_id+"</td>";
+						html+="<td>"+d.Fname+"</td>";
+						html+="<td>"+d.Lname+"</td>";
+						html+="<td>"+d.Email+"</td>";
+						html+="<td>"+d.Number+"</td>";
+						html+="<td>"+d.Checkin+"</td>";
+						html+="<td>"+d.Checkout+"</td>";
+						html+="<td>"+d.Noofpeople+"</td>";
+						
 					html+="</tr>"
 
 					$("table").append(html);

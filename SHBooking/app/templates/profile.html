@@ -1,18 +1,25 @@
 {% extends "layout.html" %}
 {% block content %}
-<form method="post" class="profileform" action="/edit/{{user.user_id}}">
-	{% csrf_token %}
-	<label>First Name</label>
-	<input type="text" name="fname" class="form-control" value="{{user.fname}}">
-	<label>Last Name</label>
-	<input type="text" name="lname" class="form-control" value="{{user.lname}}">
-	<label>Email</label>
-	<input type="email" name="email" class="form-control" value="{{user.email}}">
-	<label>Password</label>
-	<input type="password" name="password" class="form-control" value="{{user.password}}">
-	<label>Confirm password</label>
-	<input type="password" name="cpassword" class="form-control" value="{{user.cpassword}}">
 
-<button type="submit" class="btn btn-primary">update</button>
+	
+	
+<form method="post" class="profileform">
+	{% csrf_token %}
+	
+
+	<label>First Name</label>
+	<input type="text" name="fname" readonly class="form-control" value="{{user.userfname}}">
+	<label>Last Name</label>
+	<input type="text" name="lname" readonly class="form-control" value="{{user.userlname}}">
+	<label>Email</label>
+	<input type="email" name="email" readonly class="form-control" value="{{user.useremail}}">
+	<label>Password</label>
+	<input type="password" name="password" readonly class="form-control" value="{{user.userpassword}}">
+	<label>Confirm password</label>
+	<input type="password" name="cpassword" readonly class="form-control" value="{{user.usercpassword}}">
+	<button type="submit"><a href="/edituserdetail/{{user.user_id}}">edit</a></button>
+
+
+
 </form>
 {% endblock content %}

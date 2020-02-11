@@ -1,7 +1,7 @@
 {% extends "layout2.html" %}
 {% block content %}
-<a id="btnadd" href="/adminsignup" class="btn btn-primary">add</a>
-<input type="text" id="search" class="form-control col-md-4" style="margin-left: 10px">
+<a id="btnadd" href="/adminsignup"  class="btn btn-primary">add</a>
+<input type="text" id="adminsearch" placeholder="search by email" class="form-control col-md-4" style="margin-left: 10px">
 <div class="table-responsive">
 <table class="table">
 
@@ -39,10 +39,10 @@
 	})
 
 
-	$("#search").keydown(()=>{
+	$("#adminsearch").keydown(()=>{
 		$.ajax({
-			data:{search:$("#search").val()},
-			url:'/search',
+			data:{search:$("#adminsearch").val()},
+			url:'/adminsearch',
 			method:'GET',
 			success:function(data){
 				console.log(data);

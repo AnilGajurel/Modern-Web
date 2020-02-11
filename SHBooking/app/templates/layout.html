@@ -6,9 +6,10 @@
   <title>SHBooking</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="{% static 'style/index.css' %}">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/all.css' %}">
   
 </head>
 <body>
@@ -25,7 +26,7 @@
 			<a href="home" class="nav-link"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
 		</li>
     <li class="nav-item">
-      <a href="booking" class="nav-link"><i class="fa fa-home" aria-hidden="true"></i> Booking</a>
+      <a href="booking" class="nav-link"><i class="fas fa-bookmark"></i> Booking</a>
     </li>
     <li class="nav-item">
       <a href="where" class="nav-link"><i class="fa fa-location-arrow" aria-hidden="true"></i> where</a>
@@ -39,14 +40,14 @@
   <a class="nav-link">Hi {{request.session.useremail}}</a>
 </li>
 <li class="nav-item">
-  <a href="/profile/{{request.session.email}}" class="nav-link">profile</a>
+  <a href="/profile/{{request.session.useremail}}" class="nav-link">profile</a>
 </li>
 <li class="nav-item">
   <a href="/logoutuser" class="nav-link">logout</a>
 </li>
   {% else %}
 	<li class="nav-item">
-	<a href="login" class="nav-link"><i class="fa fa-sign-in" aria-hidden="true"></i>  Login</a>
+	<a href="login" class="nav-link"><i class="fas fa-sign-in-alt"></i></i>  Login</a>
 	</li>
 	<li class="nav-item">
 	<a href="signup" class="nav-link"><i class="fa fa-user-plus" aria-hidden="true"></i> signup</a>
@@ -89,7 +90,7 @@
             <a href="home" class="nav-link"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
           </li>
           <li>
-            <a href="login" class="nav-link"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+            <a href="login" class="nav-link"><i class="fas fa-sign-in-alt"></i></i> Login</a>
           </li>
           <li>
             <a href="signup" class="nav-link"><i class="fa fa-user-plus" aria-hidden="true"></i> signup</a>
@@ -105,16 +106,16 @@
 
         <ul class="list-unstyled">
           <li>
-            <a href="#!" class="nav-link"><i class="fa fa-facebook-official" aria-hidden="true">Facebook</i></a>
+            <a href="#!" class="nav-link"><i class="fab fa-facebook-f"></i> Facebook</a>
           </li>
           <li>
-            <a href="#!" class="nav-link"><i class="fa fa-instagram" aria-hidden="true">Instagram</i></a>
+            <a href="#!" class="nav-link"><i class="fab fa-instagram"></i> Instagram</a>
           </li>
           <li>
-            <a href="#!" class="nav-link"><i class="fa fa-youtube-play" aria-hidden="true">Yotube</i></a>
+            <a href="#!" class="nav-link"><i class="fab fa-youtube"></i> Yotube</a>
           </li>
           <li>
-            <a href="#!" class="nav-link"><i class="fa fa-twitter" aria-hidden="true">Twitter</i></a>
+            <a href="#!" class="nav-link"><i class="fab fa-twitter"></i> Twitter</a>
           </li>
         </ul>
 
@@ -132,8 +133,14 @@
 
 </body>
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->
+<script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> -->
+
+<script type="text/javascript" src="{% static 'js/jquery-3.4.1.slim.min.js' %}"></script>
+ <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+ <script type="text/javascript" src="{% static 'js/all.js' %}"></script>
 </html>

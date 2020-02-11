@@ -3,15 +3,15 @@
 <form method="post" class="profileform" action="/userupdate/{{user.user_id}}">
 	{% csrf_token %}
 	<label>First Name</label>
-	<input type="text" name="fname" class="form-control" value="{{user.fname}}">
+	<input type="text" name="userfname" class="form-control" value="{{user.userfname}}">
 	<label>Last Name</label>
-	<input type="text" name="lname" class="form-control" value="{{user.lname}}">
+	<input type="text" name="userlname" class="form-control" value="{{user.userlname}}">
 	<label>Email</label>
-	<input type="email" name="email" class="form-control" value="{{user.email}}">
+	<input type="email" name="useremail" class="form-control" value="{{user.useremail}}">
 	<label>Password</label>
-	<input type="password" name="password" class="form-control" value="{{user.password}}">
+	<input type="password" name="userpassword" class="form-control" value="{{user.userpassword}}">
 	<label>Confirm password</label>
-	<input type="password" name="cpassword" class="form-control" value="{{user.cpassword}}">
+	<input type="password" name="usercpassword" class="form-control" value="{{user.usercpassword}}">
 
 <button type="submit" class="btn btn-primary">update</button>
 </form>

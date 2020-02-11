@@ -1,7 +1,7 @@
 {% extends "layout2.html" %}
 {% block content %}
 <a id="btnadd" href="/create" class="btn btn-primary">add</a>
-<input type="text" id="search" class="form-control col-md-4" style="margin-left: 10px">
+<input type="text" id="search" placeholder="search by email" class="form-control col-md-4" style="margin-left: 10px">
 
 <table class="table">
 	
@@ -57,11 +57,11 @@
 					var html="";
 					html+="<tr>";
 						html+="<td>"+d.user_id+"</td>";
-						html+="<td>"+d.fname+"</td>";
-						html+="<td>"+d.lname+"</td>";
-						html+="<td>"+d.email+"</td>";
-						html+="<td>"+d.password+"</td>";
-						html+="<td>"+d.cpassword+"</td>";
+						html+="<td>"+d.userfname+"</td>";
+						html+="<td>"+d.userlname+"</td>";
+						html+="<td>"+d.useremail+"</td>";
+						html+="<td>"+d.userpassword+"</td>";
+						html+="<td>"+d.usercpassword+"</td>";
 						html+="<td><a href='/edit/"+d.user_id+"'>edit</a> | <a href='/delete/"+d.user_id+"'>delete</a></td>";
 
 					html+="</tr>"
