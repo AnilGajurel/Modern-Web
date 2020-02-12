@@ -31,8 +31,8 @@ def signup(request):
 
 
 
-def where(request):
-	return render(request,"where.html")
+def contactus(request):
+	return render(request,"contactus.html")
 
 def register(request):
 	if request.method=="POST":

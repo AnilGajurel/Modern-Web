@@ -149,3 +149,25 @@ background: linear-gradient(90deg, rgba(33,46,64,1) 23%, rgba(28,42,69,1) 82%);
 .footer-copyright{
   color: white !important;
 }
+
+
+.profileform1{
+  width: 40% !important;
+  margin-right: auto;
+  margin-left: auto;
+  border-color: black;
+}
+
+.map{
+overflow:hidden;
+padding-bottom:56.25%;
+position:relative;
+height:0;
+}
+.map iframe{
+left:0;
+top:0;
+height:100%;
+width:100%;
+position:absolute;
+}

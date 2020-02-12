@@ -40,5 +40,6 @@ class Booking(models.Model):
 	Checkin=models.DateField()
 	Checkout=models.DateField()
 	Noofpeople=models.IntegerField()
+	
 	class Meta:
 		db_table="booking"

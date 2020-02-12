@@ -10,6 +10,7 @@ class Authenticate:
 				return function(request)
 			except:
 				messages.warning(request,'please login first')
+				request.session['useremail']=None
 				return redirect('/login')
 		return wrap
 
@@ -22,5 +23,6 @@ class AdminAuthenticate:
 				return function(request)
 			except:
 				messages.warning(request,'invalid')
+				request.session['email']=None
 				return redirect('/adminlogin')
 		return wrap
