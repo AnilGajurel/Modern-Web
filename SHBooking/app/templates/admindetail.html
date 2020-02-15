@@ -17,13 +17,13 @@
 
 {% for admin in admins %}
 <tr>
-	<td>{{admin.admin_user}}</td>
+	<td>{{admin.admin_id}}</td>
 	<td>{{admin.fname}}</td>
 	<td>{{admin.lname}}</td>
 	<td>{{admin.email}}</td>
 	<td>{{admin.password}}</td>
 	<td>{{admin.cpassword}}</td>
-	<td><a class="" href="/adminedit/{{admin.admin_user}}">edit</a> | <a href="/admindelete/{{admin.admin_user}}">delete</a></td>
+	<td><a class="" href="/adminedit/{{admin.admin_id}}">edit</a> | <a href="/admindelete/{{admin.admin_id}}">delete</a></td>
 </tr>
 {% endfor %}
 
@@ -47,16 +47,17 @@
 			success:function(data){
 				console.log(data);
 				$("tr").not("tr:first").remove();
-				var html="";
+				
 				for(d of data){
+					var html="";
 					html+="<tr>";
-						html+="<td>"+d.admin_user+"</td>";
+						html+="<td>"+d.admin_id+"</td>";
 						html+="<td>"+d.fname+"</td>";
 						html+="<td>"+d.lname+"</td>";
 						html+="<td>"+d.email+"</td>";
 						html+="<td>"+d.password+"</td>";
 						html+="<td>"+d.cpassword+"</td>";
-						html+="<td><a href='/adminedit/"+d.admin_user+"'>adminedit</a> | <a href='/admindelete/"+d.admin_user+"'>admindelete</a></td>";
+						html+="<td><a href='/adminedit/"+d.admin_id+"'>adminedit</a> | <a href='/admindelete/"+d.admin_id+"'>admindelete</a></td>";
 
 					html+="</tr>"
 

@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
-from app.models import User, Admin, Room, Booking
-from app.forms import UserForm, AdminForm, RoomForm, BookingForm
+from app.models import User, Admin, Room, Booking, Enquiry
+from app.forms import UserForm, AdminForm, RoomForm, BookingForm, EnquiryForm
 from django.http import HttpResponse,JsonResponse
 from app.authenticate import Authenticate, AdminAuthenticate
 from django.contrib import messages
@@ -29,10 +29,6 @@ def home(request):
 def signup(request):
 	return render(request,"signup.html")
 
-
-
-def contactus(request):
-	return render(request,"contactus.html")
 
 def register(request):
 	if request.method=="POST":
@@ -77,7 +73,7 @@ def index(request):
 		elif "prev" in request.POST:
 			page=(int(request.POST['page'])-1)
 		tempoffset=page-1
-		offset=tempoffset*page
+		offset=tempoffset*limit
 		users=User.objects.raw("select * from user limit 3 offset %s",[offset])
 	else:
 		users=User.objects.raw("select * from user limit 3 offset 0")
@@ -97,7 +93,7 @@ def roomsearch(request):
 	return JsonResponse(list(rooms),safe=False)
 
 def booksearch(request):
-	books=Booking.objects.filter(Fname__contains=request.GET['search']).values()
+	books=Booking.objects.filter(Fname__contains=request.GET['search'])[0:3].values()
 	return JsonResponse(list(books),safe=False)
 
 
@@ -177,18 +173,18 @@ def admincreate(request):
 
 
 def adminedit(request,id):
-	admin=Admin.objects.get(admin_user=id)
+	admin=Admin.objects.get(admin_id=id)
 	return render(request,'adminedit.html',{'admin':admin})
 
 def adminupdate(request,id):
-	admin=Admin.objects.get(admin_user=id)
+	admin=Admin.objects.get(admin_id=id)
 	form=AdminForm(request.POST,instance=admin)
 	form.save()
 	return redirect('/admindetail')
 
 
 def admindelete(request,id):
-	admin=Admin.objects.get(admin_user=id)
+	admin=Admin.objects.get(admin_id=id)
 	admin.delete()
 	return redirect('/admindetail')
 
@@ -209,7 +205,6 @@ def profile(request,useremail="request.session.useremail"):
 	user=User.objects.get(useremail=useremail)
 	return render(request,"profile.html",{'user':user})
 
-
 @Authenticate.valid_user
 def booking(request):
 	return render(request,"booking.html")
@@ -223,7 +218,6 @@ def Bookform(request):
 	else:
 		form=BookingForm()
 	return render(request,'booking.html',{'form':form})
-
 
 
 @AdminAuthenticate.valid_user
@@ -242,3 +236,36 @@ def book(request):
 		books=Booking.objects.raw("select * from booking limit 3 offset 0")
 	return render(request,"book.html",{'books':books,'page':page})
 
+
+def contactus(request):
+	return render(request,"contactus.html")
+
+def enquiryus(request):
+	if request.method=="POST":
+		form=EnquiryForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect('/contactus')
+	else:
+		form=EnquiryForm()
+	return render(request,'contactus.html',{'form':form})
+
+
+def enquirydetail(request):
+	limit=3
+	page=1
+	if request.method=="POST":
+		if "next" in request.POST:
+			page=(int(request.POST['page'])+1)
+		elif "prev" in request.POST:
+			page=(int(request.POST['page'])-1)
+		tempoffset=page-1
+		offset=tempoffset*limit
+		enquirys=Enquiry.objects.raw("select * from enquiry limit 3 offset %s",[offset])
+	else:
+		enquirys=Enquiry.objects.raw("select * from enquiry limit 3 offset 0")
+	return render(request,"enquirydetail.html",{'enquirys':enquirys,'page':page})
+
+def enquirysearch(request):
+	enquirys=Enquiry.objects.filter(enquiry_name__contains=request.GET['search'])[0:3].values()
+	return JsonResponse(list(enquirys),safe=False)

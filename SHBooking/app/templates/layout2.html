@@ -5,16 +5,18 @@
 {% load static %}
 <title></title>
 <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
-<script src="{% static 'js/jquery-3.4.1.min.js'%}">
-
+<script src="{% static 'js/jquery-3.4.1.min.js'%}"></script>
+<script src="{% static 'js/jquery.js'%}">
 </script>
+
+
 <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
  -->
  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
 </head>
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-	<a href="home" class="navbar-brand">SHBooking</a>
+	<a href="/home" class="navbar-brand">SHBooking</a>
 	<button class="navbar-toggler" data-toggle="collapse" data-target="#navbarmenu">
 		<span class="navbar-toggler-icon"></span>
 
@@ -22,7 +24,7 @@
 	<div class="collapse navbar-collapse" id="navbarmenu">
 	<ul class="navbar-nav mr-auto">
 		<li class="nav-item">
-			<a href="home" class="nav-link">Home</a>
+			<a href="/home" class="nav-link">Home</a>
 		</li>
 	</ul>
 	<ul class="navbar-nav ml-auto">
@@ -40,6 +42,7 @@
 	<li id="customer" class="list-group-item list-group-item-action active"><a href="/" class="link">Customer</a></li>
 	<li id="room" class="list-group-item list-group-item-action"><a href="/room" class="link">Room</a></li>
 	<li id="booking" class="list-group-item list-group-item-action"><a href="/book" class="link">Booking</a></li>
+	<li id="enquiry" class="list-group-item list-group-item-action"><a href="/enquirydetail" class="link">Enquiry</a></li>
 	
 </ul>
 </div>
@@ -63,6 +66,6 @@
  -->
 
  <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
- <script type="text/javascript" src="{% static 'bootstrap.min.js' %}"></script>
+ <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
 
 </html>

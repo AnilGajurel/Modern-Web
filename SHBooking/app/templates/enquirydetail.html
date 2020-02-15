@@ -1,0 +1,67 @@
+{% extends "layout2.html" %}
+{% block content %}
+<input type="text" id="enquirysearch" placeholder="search by email" class="form-control col-md-4" style="margin-left: 10px">
+<div class="table-responsive">
+<table class="table">
+
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Subject</th>
+		<th>Message</th>
+	</tr>
+
+{% for enquiry in enquirys %}
+<tr>
+	<td>{{enquiry.enquiry_id}}</td>
+	<td>{{enquiry.enquiry_name}}</td>
+	<td>{{enquiry.enquiry_email}}</td>
+	<td>{{enquiry.enquiry_subject}}</td>
+	<td>{{enquiry.enquiry_message}}</td>
+	
+{% endfor %}
+
+
+</table>
+</div>
+
+<script>
+	$(document).ready(()=>{
+		$(".sidebar").find(".active").removeClass("active");
+		$("#enquiry").addClass("active");
+	})
+
+
+	$("#enquirysearch").keydown(()=>{
+		$.ajax({
+			data:{search:$("#enquirysearch").val()},
+			url:'/enquirysearch',
+			method:'GET',
+			success:function(data){
+				console.log(data);
+				$("tr").not("tr:first").remove();
+				
+				for(d of data){
+					var html="";
+					html+="<tr>";
+						html+="<td>"+d.enquiry_id+"</td>";
+						html+="<td>"+d.enquiry_name+"</td>";
+						html+="<td>"+d.enquiry_email+"</td>";
+						html+="<td>"+d.enquiry_subject+"</td>";
+						html+="<td>"+d.enquiry_message+"</td>";
+						
+
+					html+="</tr>"
+
+					$("table").append(html);
+				}
+			},error:function(error){
+				console.log(error)
+			},complete:function(){
+				console.log("complete")
+			}
+		})
+	})
+</script>
+{% endblock content %}

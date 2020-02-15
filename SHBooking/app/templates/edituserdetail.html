@@ -1,7 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
+{% load static %}
 <form method="post" class="profileform" action="/userupdate/{{user.user_id}}">
 	{% csrf_token %}
+	<div class="form-group l">
+		<img src="{% static 'Images/profile.png' %}" alt="profile pic">
+	</div>
 	<label>First Name</label>
 	<input type="text" name="userfname" class="form-control" value="{{user.userfname}}">
 	<label>Last Name</label>

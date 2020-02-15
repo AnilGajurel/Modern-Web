@@ -15,6 +15,7 @@ class Authenticate:
 		return wrap
 
 
+
 class AdminAuthenticate:
 	def valid_user(function):
 		def wrap(request):

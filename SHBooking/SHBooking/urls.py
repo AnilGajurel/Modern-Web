@@ -26,7 +26,6 @@ urlpatterns = [
     path('adminlogin',views.adminlogin),
     path('logout',views.logout),
     path('logoutuser',views.logoutuser),
-    path('contactus',views.contactus),
     path('register',views.register),
     path('',views.index),
     path('search',views.search),
@@ -54,6 +53,10 @@ urlpatterns = [
     path('booking',views.booking),
     path('Bookform',views.Bookform),
     path('book',views.book),
+    path('contactus',views.contactus),
+    path('enquiryus',views.enquiryus),
+    path('enquirydetail',views.enquirydetail),
+    path('enquirysearch',views.enquirysearch),
 
     
 

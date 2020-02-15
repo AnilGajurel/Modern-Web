@@ -2,14 +2,14 @@
 {% block content %}
 
 
-	<form method="post" class="bookingform" action="/Bookform">
+  <form method="POST" class="bookingform" action="/Bookform">
     {% csrf_token %}
 
-		<div class="text1">
-		 <h1>Booking</h1>
+    <div class="text1">
+     <h1>Booking</h1>
       <p>Please fill in this form to book the hotel room.</p>
   </div>
-		<div class="form-row">
+    <div class="form-row">
     <div class="form-group col-md-6">
       <label>First Name</label>
       <input type="name" class="form-control" name="Fname" placeholder="First Name" required autocomplete="off">

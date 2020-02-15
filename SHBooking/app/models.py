@@ -5,7 +5,7 @@ class User(models.Model):
 	user_id=models.AutoField(auto_created=True,primary_key=True)
 	userfname=models.CharField(max_length=50)
 	userlname=models.CharField(max_length=50)
-	useremail=models.CharField(max_length=80)
+	useremail=models.EmailField(max_length=80)
 	userpassword=models.CharField(max_length=50)
 	usercpassword=models.CharField(max_length=50)
 	class Meta:
@@ -13,7 +13,7 @@ class User(models.Model):
 
 
 class Admin(models.Model):
-	admin_user=models.AutoField(auto_created=True,primary_key=True)
+	admin_id=models.AutoField(auto_created=True,primary_key=True)
 	fname=models.CharField(max_length=50)
 	lname=models.CharField(max_length=50)
 	email=models.CharField(max_length=80)
@@ -43,3 +43,13 @@ class Booking(models.Model):
 	
 	class Meta:
 		db_table="booking"
+
+class Enquiry(models.Model):
+	enquiry_id=models.AutoField(auto_created=True,primary_key=True)
+	enquiry_name=models.CharField(max_length=60)
+	enquiry_email=models.EmailField(max_length=100)
+	enquiry_subject=models.CharField(max_length=1000)
+	enquiry_message=models.CharField(max_length=10000)
+
+	class Meta:
+		db_table="enquiry"

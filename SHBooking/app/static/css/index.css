@@ -152,7 +152,7 @@ background: linear-gradient(90deg, rgba(33,46,64,1) 23%, rgba(28,42,69,1) 82%);
 
 
 .profileform1{
-  width: 40% !important;
+  width: 30% !important;
   margin-right: auto;
   margin-left: auto;
   border-color: black;
@@ -171,3 +171,10 @@ height:100%;
 width:100%;
 position:absolute;
 }
+
+
+.text2{
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
